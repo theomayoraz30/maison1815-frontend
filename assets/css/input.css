@@ -33,16 +33,16 @@
    DESIGN TOKENS
 ───────────────────────────────────────── */
 :root {
-  /* Colors */
-  --color-bg:            #000000;
-  --color-surface:       #0a0a0a;
-  --color-fg:            #ffffff;
-  --color-muted:         rgba(255, 255, 255, 0.4);
-  --color-border:        rgba(255, 255, 255, 0.08);
+  /* Colors — light theme */
+  --color-bg:            #ffffff;
+  --color-surface:       #f4f4f4;
+  --color-fg:            #0a0a0a;
+  --color-muted:         rgba(0, 0, 0, 0.38);
+  --color-border:        rgba(0, 0, 0, 0.1);
   --color-primary:       #FF5500;
   --color-primary-light: #FF7733;
   --color-primary-dark:  #CC4400;
-  --color-primary-muted: rgba(255, 85, 0, 0.15);
+  --color-primary-muted: rgba(255, 85, 0, 0.10);
 
   /* Typography */
   --font-display:  'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -100,12 +100,22 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 2.5rem;
-  /* gradient keeps text legible over hero media */
+  /* Gradient keeps links legible against the hero video (dark) */
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.6) 0%,
     rgba(0, 0, 0, 0.0) 100%
   );
+  transition: background 0.35s var(--ease-smooth),
+              border-color 0.35s var(--ease-smooth);
+}
+
+/* Once the user scrolls onto the white-background content, add a crisp white bar */
+.navbar.is-scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
 }
 
 /* Logo / brand */
@@ -114,10 +124,15 @@ body {
   font-weight: 700;
   letter-spacing: var(--tracking-nav);
   text-transform: uppercase;
-  color: var(--color-fg);
+  /* White over hero, switches to dark when scrolled (via .is-scrolled override) */
+  color: #ffffff;
   text-decoration: none;
   flex-shrink: 0;
   transition: color 0.25s var(--ease-smooth);
+}
+
+.navbar.is-scrolled .navbar__logo {
+  color: var(--color-fg);
 }
 
 .navbar__logo:hover {
@@ -140,12 +155,18 @@ body {
   font-weight: 500;
   letter-spacing: var(--tracking-nav);
   text-transform: uppercase;
-  color: var(--color-fg);
+  /* White over dark hero video */
+  color: #ffffff;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   /* Prevent layout collapse during scramble */
   min-width: max-content;
+}
+
+/* Switch to dark text once scrolled onto white background */
+.navbar.is-scrolled .nav-link {
+  color: var(--color-fg);
 }
 
 /* Underline bar — GSAP animates scaleX 0 → 1 */
@@ -178,9 +199,15 @@ body {
   display: block;
   width: 22px;
   height: 1px;
-  background-color: var(--color-fg);
+  /* White over hero, dark when scrolled */
+  background-color: #ffffff;
   transition: transform 0.35s var(--ease-expo-out),
-              opacity   0.35s var(--ease-expo-out);
+              opacity   0.35s var(--ease-expo-out),
+              background-color 0.3s var(--ease-smooth);
+}
+
+.navbar.is-scrolled .navbar__burger span {
+  background-color: var(--color-fg);
 }
 
 /* Burger → X state */
@@ -288,4 +315,386 @@ body {
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Navbar variant — no logo, align nav to the left */
+.navbar--nav-only {
+  justify-content: flex-start;
+}
+
+/* Darkening veil over video */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Small label above title — GSAP reveals this */
+.hero__eyebrow {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 2rem;
+  opacity: 0;
+}
+
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  line-height: 0.88;
+}
+
+.hero__title-line {
+  display: block;
+  font-size: clamp(5rem, 13vw, 11.5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-fg);
+  opacity: 0;
+}
+
+.hero__tagline {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 2.5rem;
+  opacity: 0;
+}
+
+/* Scroll indicator — bottom center */
+.hero__scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+}
+
+.hero__scroll-label {
+  font-size: 0.44rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--color-primary), transparent);
+  transform-origin: top center;
+  animation: heroScrollPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes heroScrollPulse {
+  0%   { transform: scaleY(0);   opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { transform: scaleY(1);   opacity: 1; }
+  100% { transform: scaleY(1);   opacity: 0; }
+}
+
+/* ─────────────────────────────────────────
+   HERO — TWO-COLUMN SPLIT
+───────────────────────────────────────── */
+
+/* Container: centered grid, fills available hero space */
+.hero__split {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  width: min(980px, 88vw);
+  pointer-events: none;
+}
+
+/* Left column — large logo treatment */
+.hero__logo-block {
+  /* no extra positioning needed */
+}
+
+.hero__logo-img-wrap {
+  opacity: 0; /* GSAP reveals */
+}
+
+.hero__logo-img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right column — description text */
+.hero__desc {
+  padding-left: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  opacity: 0; /* GSAP reveals */
+}
+
+.hero__desc-eyebrow {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.hero__desc-text {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.85;
+  color: #ffffff;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 768px) {
+  .hero__split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    width: min(480px, 88vw);
+  }
+
+  .hero__desc {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 2rem;
+  }
+}
+
+/* ─────────────────────────────────────────
+   PROJECTS SECTION
+───────────────────────────────────────── */
+.projects {
+  padding: 6rem 2.5rem 5rem;
+}
+
+.projects__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 3rem;
+}
+
+.projects__label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.projects__count {
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--color-muted);
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ─────────────────────────────────────────
+   PROJECT CARD
+───────────────────────────────────────── */
+.card {
+  cursor: pointer;
+}
+
+.card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-surface);
+}
+
+.card__img,
+.card__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: opacity;
+}
+
+/* Video hidden by default — GSAP crossfades it in */
+.card__video {
+  opacity: 0;
+}
+
+.card__info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.875rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.card__field-label {
+  font-size: 0.42rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.card__field-value {
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fg);
+}
+
+/* ─────────────────────────────────────────
+   CLIENTS TICKER
+───────────────────────────────────────── */
+.clients {
+  padding: 4rem 0 4.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.clients__header {
+  padding: 0 2.5rem 2rem;
+}
+
+.clients__label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.ticker {
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  /* Extra vertical padding gives the scale room so it doesn't clip */
+  padding: 2.5rem 0;
+}
+
+.ticker:active {
+  cursor: pointer;
+}
+
+.ticker__track {
+  display: flex;
+  will-change: transform;
+}
+
+.ticker__list {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ticker__item {
+  display: flex;
+  align-items: center;
+  padding: 0 3rem;
+  border-right: 1px solid var(--color-border);
+  color: var(--color-muted);
+  flex-shrink: 0;
+  position: relative;
+  /* Smooth both color and scale */
+  transition: color 0.3s var(--ease-smooth),
+              transform 0.4s var(--ease-expo-out);
+}
+
+.ticker__item:hover {
+  color: var(--color-primary);
+  /* Pop the item — surrounding items stay in place, this one zooms over them */
+  transform: scale(1.6);
+  z-index: 2;
+}
+
+.ticker__name {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }

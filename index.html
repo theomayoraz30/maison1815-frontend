@@ -13,19 +13,15 @@
   <!-- ─────────────────────────────────────
        NAVBAR
   ───────────────────────────────────────── -->
-  <header id="navbar" class="navbar" role="banner">
-
-    <a href="/" class="navbar__logo" aria-label="Maison 1815 — Accueil">
-      MAISON&nbsp;1815
-    </a>
+  <header id="navbar" class="navbar navbar--nav-only" role="banner">
 
     <nav aria-label="Navigation principale">
       <ul class="navbar__links">
         <li>
           <a href="index.html" class="nav-link"
-             data-scramble data-en="PROJECTS" data-fr="PROJETS"
+             data-scramble data-en="WORKS" data-fr="TRAVAUX"
              aria-current="page">
-            PROJECTS
+            WORKS
             <span class="nav-link__line" aria-hidden="true"></span>
           </a>
         </li>
@@ -38,7 +34,7 @@
         </li>
         <li>
           <a href="onset.html" class="nav-link"
-             data-scramble data-en="ON SET" data-fr="SUR PLATEAU">
+             data-scramble data-en="ON SET" data-fr="EN PLATEAU">
             ON SET
             <span class="nav-link__line" aria-hidden="true"></span>
           </a>
@@ -89,26 +85,281 @@
 
 
   <!-- ─────────────────────────────────────
-       PAGE CONTENT (placeholder for test)
+       HERO — fullscreen video, centered title
   ───────────────────────────────────────── -->
-  <main style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem;">
+  <section class="hero" aria-label="Hero">
 
-    <!-- Test: scramble on a standalone heading -->
-    <p style="font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.5rem;">
-      Survolez les liens — hover the links
-    </p>
+    <video class="hero__video" autoplay muted loop playsinline>
+      <source src="assets/media/video.mp4" type="video/mp4">
+    </video>
 
-    <h1 style="font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-align: center; line-height: 1;"
-        data-scramble data-en="PRODUCTION" data-fr="PRODUCTION">
-      PRODUCTION
-    </h1>
+    <!-- Two-column split: logo left, description right -->
+    <div class="hero__split">
 
-    <div style="width: 40px; height: 1px; background: var(--color-primary); margin: 2rem auto;"></div>
+      <div class="hero__logo-block">
+        <h1 class="hero__logo-img-wrap">
+          <img src="assets/media/maison-1815-logo.png"
+               alt="Maison 1815"
+               class="hero__logo-img"
+               draggable="false">
+        </h1>
+      </div>
 
-    <p style="font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4);">
-      Photo &amp; Vidéo
-    </p>
+      <div class="hero__desc">
+        <span class="hero__desc-eyebrow">Est. 2026 — Valais/Wallis</span>
+        <p class="hero__desc-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur.
+        </p>
+      </div>
 
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-label">ESCAPE THE ORDINARY</span>
+      <span class="hero__scroll-line"></span>
+    </div>
+
+  </section>
+
+
+  <!-- ─────────────────────────────────────
+       PROJECTS — responsive 3/2/1-col grid
+  ───────────────────────────────────────── -->
+  <main>
+    <section class="projects" aria-label="Projets">
+
+      <div class="projects__header">
+        <span class="projects__label">Projets sélectionnés</span>
+        <span class="projects__count">06</span>
+      </div>
+
+      <div class="projects__grid">
+
+        <!-- Card 01 -->
+        <article class="card" aria-label="Projet Hermès — Saison 24">
+          <div class="card__media">
+            <img class="card__img"
+                 src="https://placehold.co/800x600/0a0a0a/333333?text=+"
+                 alt="Hermès — Saison 24"
+                 loading="eager"
+                 draggable="false">
+            <video class="card__video" loop muted playsinline preload="none">
+              <source src="assets/media/video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__info">
+            <div class="card__field">
+              <span class="card__field-label">Client</span>
+              <span class="card__field-value">Hermès</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Projet</span>
+              <span class="card__field-value">Saison 24</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Régisseur</span>
+              <span class="card__field-value">M. Dumont</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 02 -->
+        <article class="card" aria-label="Projet Dior — Campagne AW">
+          <div class="card__media">
+            <img class="card__img"
+                 src="https://placehold.co/800x600/0d0d0d/2a2a2a?text=+"
+                 alt="Dior — Campagne AW"
+                 loading="lazy"
+                 draggable="false">
+            <video class="card__video" loop muted playsinline preload="none">
+              <source src="assets/media/video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__info">
+            <div class="card__field">
+              <span class="card__field-label">Client</span>
+              <span class="card__field-value">Dior</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Projet</span>
+              <span class="card__field-value">Campagne AW</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Régisseur</span>
+              <span class="card__field-value">A. Petit</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 03 -->
+        <article class="card" aria-label="Projet Cartier — Lumière">
+          <div class="card__media">
+            <img class="card__img"
+                 src="https://placehold.co/800x600/111111/222222?text=+"
+                 alt="Cartier — Lumière"
+                 loading="lazy"
+                 draggable="false">
+            <video class="card__video" loop muted playsinline preload="none">
+              <source src="assets/media/video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__info">
+            <div class="card__field">
+              <span class="card__field-label">Client</span>
+              <span class="card__field-value">Cartier</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Projet</span>
+              <span class="card__field-value">Lumière</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Régisseur</span>
+              <span class="card__field-value">J. Marchand</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 04 -->
+        <article class="card" aria-label="Projet Chanel — N°5">
+          <div class="card__media">
+            <img class="card__img"
+                 src="https://placehold.co/800x600/0a0a0a/1e1e1e?text=+"
+                 alt="Chanel — N°5"
+                 loading="lazy"
+                 draggable="false">
+            <video class="card__video" loop muted playsinline preload="none">
+              <source src="assets/media/video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__info">
+            <div class="card__field">
+              <span class="card__field-label">Client</span>
+              <span class="card__field-value">Chanel</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Projet</span>
+              <span class="card__field-value">N°5</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Régisseur</span>
+              <span class="card__field-value">S. Lambert</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 05 -->
+        <article class="card" aria-label="Projet LVMH — Horizons">
+          <div class="card__media">
+            <img class="card__img"
+                 src="https://placehold.co/800x600/0c0c0c/282828?text=+"
+                 alt="LVMH — Horizons"
+                 loading="lazy"
+                 draggable="false">
+            <video class="card__video" loop muted playsinline preload="none">
+              <source src="assets/media/video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__info">
+            <div class="card__field">
+              <span class="card__field-label">Client</span>
+              <span class="card__field-value">LVMH</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Projet</span>
+              <span class="card__field-value">Horizons</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Régisseur</span>
+              <span class="card__field-value">T. Martin</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 06 -->
+        <article class="card" aria-label="Projet Saint Laurent — Noir">
+          <div class="card__media">
+            <img class="card__img"
+                 src="https://placehold.co/800x600/0f0f0f/1a1a1a?text=+"
+                 alt="Saint Laurent — Noir"
+                 loading="lazy"
+                 draggable="false">
+            <video class="card__video" loop muted playsinline preload="none">
+              <source src="assets/media/video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__info">
+            <div class="card__field">
+              <span class="card__field-label">Client</span>
+              <span class="card__field-value">Saint Laurent</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Projet</span>
+              <span class="card__field-value">Noir</span>
+            </div>
+            <div class="card__field">
+              <span class="card__field-label">Régisseur</span>
+              <span class="card__field-value">C. Bernard</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /.projects__grid -->
+    </section>
+
+
+    <!-- ─────────────────────────────────────
+         CLIENTS TICKER — infinite horizontal scroll
+    ───────────────────────────────────────── -->
+    <section class="clients" aria-label="Clients">
+
+      <div class="clients__header">
+        <span class="clients__label">Nos clients</span>
+      </div>
+
+      <div class="ticker" role="marquee" aria-label="Défilement des clients">
+        <div class="ticker__track">
+
+          <!-- Original list -->
+          <ul class="ticker__list" aria-hidden="false">
+            <li class="ticker__item"><span class="ticker__name">Hermès</span></li>
+            <li class="ticker__item"><span class="ticker__name">Dior</span></li>
+            <li class="ticker__item"><span class="ticker__name">Cartier</span></li>
+            <li class="ticker__item"><span class="ticker__name">Chanel</span></li>
+            <li class="ticker__item"><span class="ticker__name">LVMH</span></li>
+            <li class="ticker__item"><span class="ticker__name">Saint Laurent</span></li>
+            <li class="ticker__item"><span class="ticker__name">Celine</span></li>
+            <li class="ticker__item"><span class="ticker__name">Givenchy</span></li>
+            <li class="ticker__item"><span class="ticker__name">Balenciaga</span></li>
+            <li class="ticker__item"><span class="ticker__name">Valentino</span></li>
+            <li class="ticker__item"><span class="ticker__name">Prada</span></li>
+            <li class="ticker__item"><span class="ticker__name">Gucci</span></li>
+          </ul>
+
+          <!-- Duplicate for seamless loop -->
+          <ul class="ticker__list" aria-hidden="true">
+            <li class="ticker__item"><span class="ticker__name">Hermès</span></li>
+            <li class="ticker__item"><span class="ticker__name">Dior</span></li>
+            <li class="ticker__item"><span class="ticker__name">Cartier</span></li>
+            <li class="ticker__item"><span class="ticker__name">Chanel</span></li>
+            <li class="ticker__item"><span class="ticker__name">LVMH</span></li>
+            <li class="ticker__item"><span class="ticker__name">Saint Laurent</span></li>
+            <li class="ticker__item"><span class="ticker__name">Celine</span></li>
+            <li class="ticker__item"><span class="ticker__name">Givenchy</span></li>
+            <li class="ticker__item"><span class="ticker__name">Balenciaga</span></li>
+            <li class="ticker__item"><span class="ticker__name">Valentino</span></li>
+            <li class="ticker__item"><span class="ticker__name">Prada</span></li>
+            <li class="ticker__item"><span class="ticker__name">Gucci</span></li>
+          </ul>
+
+        </div>
+      </div>
+
+    </section>
   </main>
 
 
@@ -117,7 +368,7 @@
   ───────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">
 
-    <span class="footer__brand">MAISON 1815</span>
+    <span class="footer__brand">Copyright © MDevelopment 2026</span>
 
     <div class="footer__socials">
 

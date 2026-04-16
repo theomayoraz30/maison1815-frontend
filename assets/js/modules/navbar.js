@@ -29,7 +29,11 @@ export function initNavbar() {
 
     link.addEventListener('mouseleave', () => {
       gsap.to(line, { scaleX: 0, duration: 0.3, ease: 'power2.in' });
-      gsap.to(link, { color: 'var(--color-fg)', duration: 0.25, ease: 'none' });
+      // Restore white over hero video, dark once scrolled onto white background
+      const baseColor = navbar.classList.contains('is-scrolled')
+        ? 'var(--color-fg)'
+        : '#ffffff';
+      gsap.to(link, { color: baseColor, duration: 0.25, ease: 'none' });
     });
   });
 
