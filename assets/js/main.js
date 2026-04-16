@@ -11,6 +11,7 @@ import { initSlider    } from './modules/slider.js';
 import { initCards     } from './modules/cards.js';
 import { initTalents   } from './modules/talents.js';
 import { initAccordion } from './modules/accordion.js';
+import { initAbout     } from './modules/about.js';
 
 // Register GSAP plugins once
 if (typeof ScrollTrigger !== 'undefined') {
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCards();
   initTalents();
   initAccordion();
+  initAbout();
 });
 
 /**
