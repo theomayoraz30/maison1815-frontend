@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────
+   FONTS — SF Pro Display
+───────────────────────────────────────── */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../../sf-pro-display/SFPRODISPLAYREGULAR.OTF') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../../sf-pro-display/SFPRODISPLAYMEDIUM.OTF') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../../sf-pro-display/SFPRODISPLAYBOLD.OTF') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+  /* Colors */
+  --color-bg:            #000000;
+  --color-surface:       #0a0a0a;
+  --color-fg:            #ffffff;
+  --color-muted:         rgba(255, 255, 255, 0.4);
+  --color-border:        rgba(255, 255, 255, 0.08);
+  --color-primary:       #FF5500;
+  --color-primary-light: #FF7733;
+  --color-primary-dark:  #CC4400;
+  --color-primary-muted: rgba(255, 85, 0, 0.15);
+
+  /* Typography */
+  --font-display:  'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  --tracking-nav:  0.15em;
+  --tracking-head: 0.08em;
+  --tracking-body: 0.02em;
+
+  /* Easing */
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo-in:  cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --nav-height: 72px;
+  --z-nav:      100;
+  --z-modal:    200;
+  --z-cursor:   300;
+}
+
+/* ─────────────────────────────────────────
+   RESET / BASE
+───────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  /* gradient keeps text legible over hero media */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.0) 100%
+  );
+}
+
+/* Logo / brand */
+.navbar__logo {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+  color: var(--color-fg);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: color 0.25s var(--ease-smooth);
+}
+
+.navbar__logo:hover {
+  color: var(--color-primary);
+}
+
+/* Links container */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+/* Individual nav link */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+  color: var(--color-fg);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  /* Prevent layout collapse during scramble */
+  min-width: max-content;
+}
+
+/* Underline bar — GSAP animates scaleX 0 → 1 */
+.nav-link__line {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Mobile burger button */
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.navbar__burger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background-color: var(--color-fg);
+  transition: transform 0.35s var(--ease-expo-out),
+              opacity   0.35s var(--ease-expo-out);
+}
+
+/* Burger → X state */
+.navbar__burger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar__burger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.navbar__burger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Full-screen mobile menu */
+.navbar__mobile {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-nav) - 1);
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  opacity: 0;
+  pointer-events: none;
+  /* GSAP handles open/close animation */
+}
+
+.navbar__mobile .nav-link {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--color-fg);
+}
+
+@media (max-width: 768px) {
+  .navbar__links  { display: none; }
+  .navbar__burger { display: flex; }
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__brand {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.footer__socials {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  transition: color 0.2s var(--ease-smooth);
+}
+
+.social-icon:hover {
+  color: var(--color-primary);
+}
+
+.social-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL BASE STATE
+   (GSAP sets opacity/transform back to normal)
+───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ─────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────── */
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
