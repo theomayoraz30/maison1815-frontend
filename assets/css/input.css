@@ -217,7 +217,11 @@ body {
   background-color: var(--color-fg);
 }
 
-/* Burger → X state */
+/* Burger → X state — always dark regardless of page/scroll context */
+.navbar__burger.is-open span {
+  background-color: var(--color-fg);
+}
+
 .navbar__burger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
