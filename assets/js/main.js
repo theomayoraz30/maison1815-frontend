@@ -5,14 +5,15 @@
  * GSAP and ScrollTrigger are loaded as globals via <script> tags in the HTML.
  */
 
-import { initScramble  } from './modules/scramble.js';
-import { initNavbar    } from './modules/navbar.js';
-import { initSlider    } from './modules/slider.js';
-import { initCards     } from './modules/cards.js';
-import { initTalents   } from './modules/talents.js';
-import { initAccordion } from './modules/accordion.js';
-import { initAbout     } from './modules/about.js';
-import { initLightbox  } from './modules/lightbox.js';
+import { initScramble    } from './modules/scramble.js';
+import { initNavbar      } from './modules/navbar.js';
+import { initSlider      } from './modules/slider.js';
+import { initCards       } from './modules/cards.js';
+import { initTalents     } from './modules/talents.js';
+import { initAccordion   } from './modules/accordion.js';
+import { initAbout       } from './modules/about.js';
+import { initLightbox    } from './modules/lightbox.js';
+import { initVideoPlayer } from './modules/videoPlayer.js';
 
 // Register GSAP plugins once
 if (typeof ScrollTrigger !== 'undefined') {
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordion();
   initAbout();
   initLightbox();
+  initVideoPlayer();
 });
 
 /**

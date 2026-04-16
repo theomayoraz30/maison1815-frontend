@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maison 1815 — Projet vidéo">
+  <title>PROJET VIDÉO — MAISON 1815</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- ─────────────────────────────────────
+       NAVBAR
+  ───────────────────────────────────────── -->
+  <header id="navbar" class="navbar navbar--nav-only" role="banner">
+
+    <nav aria-label="Navigation principale">
+      <ul class="navbar__links">
+        <li>
+          <a href="index.html" class="nav-link" data-scramble data-en="WORKS" data-fr="TRAVAUX">
+            WORKS
+            <span class="nav-link__line" aria-hidden="true"></span>
+          </a>
+        </li>
+        <li>
+          <a href="about.html" class="nav-link" data-scramble data-en="ABOUT" data-fr="À PROPOS">
+            ABOUT
+            <span class="nav-link__line" aria-hidden="true"></span>
+          </a>
+        </li>
+        <li>
+          <a href="onset.html" class="nav-link" data-scramble data-en="ON SET" data-fr="EN PLATEAU">
+            ON SET
+            <span class="nav-link__line" aria-hidden="true"></span>
+          </a>
+        </li>
+        <li>
+          <a href="talents.html" class="nav-link" data-scramble data-en="TALENTS" data-fr="TALENTS">
+            TALENTS
+            <span class="nav-link__line" aria-hidden="true"></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile burger -->
+    <button class="navbar__burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navbar-mobile">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </header>
+
+  <!-- Mobile full-screen overlay -->
+  <div id="navbar-mobile" class="navbar__mobile" role="dialog" aria-modal="true" aria-label="Menu mobile">
+    <nav>
+      <a href="index.html" class="nav-link" data-scramble data-en="WORKS" data-fr="TRAVAUX">WORKS</a>
+      <a href="about.html" class="nav-link" data-scramble data-en="ABOUT" data-fr="À PROPOS">ABOUT</a>
+      <a href="onset.html" class="nav-link" data-scramble data-en="ON SET" data-fr="EN PLATEAU">ON SET</a>
+      <a href="talents.html" class="nav-link" data-scramble data-en="TALENTS" data-fr="TALENTS">TALENTS</a>
+    </nav>
+  </div>
+
+
+  <main>
+
+    <!-- ─────────────────────────────────────
+         VIDEO PLAYER — custom controls
+    ───────────────────────────────────────── -->
+    <section class="project-player" aria-label="Lecteur vidéo">
+
+      <div class="video-wrapper" id="video-container">
+
+        <video id="project-video" preload="metadata" playsinline>
+          <source src="assets/media/video.mp4" type="video/mp4">
+        </video>
+
+        <!-- Center play indicator (visible when paused) -->
+        <div class="video-center-play" id="video-center-play">
+          <button class="video-center-btn" aria-label="Lecture">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+
+        <!-- Controls overlay -->
+        <div class="video-overlay-controls" role="group" aria-label="Contrôles vidéo">
+
+          <div class="video-progress-wrap">
+            <input
+              type="range"
+              class="video-progress"
+              min="0"
+              max="100"
+              value="0"
+              step="0.1"
+              aria-label="Progression de la vidéo"
+            >
+          </div>
+
+          <div class="video-controls-row">
+
+            <button class="video-btn video-btn--play" aria-label="Lecture / Pause">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+
+            <span class="video-time" id="video-time">0:00 / 0:00</span>
+
+            <div class="video-controls-spacer"></div>
+
+            <button class="video-btn video-btn--mute" aria-label="Couper / Activer le son">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              </svg>
+            </button>
+
+            <button class="video-btn video-btn--fullscreen" aria-label="Plein écran">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="15 3 21 3 21 9"/>
+                <polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/>
+                <line x1="3" y1="21" x2="10" y2="14"/>
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    
+    <!-- ─────────────────────────────────────
+         TEAM ACCORDION
+    ───────────────────────────────────────── -->
+    <section class="project-team" aria-label="Équipe">
+      <ul class="accordion">
+        <li class="accordion__item reveal">
+          <button class="accordion__trigger accordion__trigger--team" aria-expanded="false">
+            <span class="accordion__title">TEAM</span>
+          </button>
+          <div class="accordion__body" role="region">
+            <ul class="team-list">
+              <li class="team-list__item">
+                <span class="team-list__role">Réalisateur</span>
+                <span class="team-list__name">Prénom Nom</span>
+              </li>
+              <li class="team-list__item">
+                <span class="team-list__role">Directeur de la photographie</span>
+                <span class="team-list__name">Prénom Nom</span>
+              </li>
+              <li class="team-list__item">
+                <span class="team-list__role">Montage</span>
+                <span class="team-list__name">Prénom Nom</span>
+              </li>
+              <li class="team-list__item">
+                <span class="team-list__role">Coloriste</span>
+                <span class="team-list__name">Prénom Nom</span>
+              </li>
+              <li class="team-list__item">
+                <span class="team-list__role">Son</span>
+                <span class="team-list__name">Prénom Nom</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+
+    <!-- ─────────────────────────────────────
+         PROJECT INFO
+    ───────────────────────────────────────── -->
+    <section class="project-info reveal" aria-label="Informations du projet">
+      <h1 class="project-info__title">Client — Nom du projet</h1>
+      <p class="project-info__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    </section>
+
+
+
+  </main>
+
+
+  <!-- ─────────────────────────────────────
+       FOOTER
+  ───────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+
+    <span class="footer__brand">Copyright © MDevelopment 2026</span>
+
+    <div class="footer__socials">
+
+      <!-- Instagram -->
+      <a href="#" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      </a>
+
+      <!-- Vimeo -->
+      <a href="#" class="social-icon" aria-label="Vimeo" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M22 7.4c-.1 2.3-1.7 5.4-4.8 9.4-3.2 4.1-5.9 6.2-8.1 6.2-1.4 0-2.5-1.3-3.5-3.8L4.3 12C3.6 9.4 2.8 8.1 2 8.1c-.2 0-.8.4-1.8 1.1L0 8.1A274 274 0 0 0 3.4 5c1.6-1.4 2.8-2.1 3.6-2.2 1.9-.2 3 1.1 3.4 3.8.5 2.9.8 4.7.9 5.4.5 2.2 1.1 3.3 1.7 3.3.5 0 1.2-.7 2.1-2.2 1-1.5 1.5-2.6 1.6-3.4.1-1.3-.4-1.9-1.6-1.9-.6 0-1.2.1-1.8.4 1.2-3.8 3.4-5.6 6.7-5.5 2.4.1 3.6 1.7 3.4 4.3z" />
+        </svg>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="#" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M20.4 20.5h-3.5v-5.6c0-1.3 0-3-1.9-3-1.8 0-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7 20.5H3.6V9H7v11.5zM22.2 0H1.8C.8 0 .8 0 1.7v20.5C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.8V1.7C24 .8 23.2 0 22.2 0z" />
+        </svg>
+      </a>
+
+    </div>
+  </footer>
+
+
+  <!-- ─────────────────────────────────────
+       SCRIPTS
+  ───────────────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+
+  <script type="module" src="assets/js/main.js"></script>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof ScrollTrigger === 'undefined') return;
+      document.querySelectorAll('.reveal').forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+            delay: i * 0.04,
+          }
+        );
+      });
+    });
+  </script>
+
+</body>
+
+</html>
