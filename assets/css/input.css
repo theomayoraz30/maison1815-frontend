@@ -39,9 +39,7 @@
   --color-fg:            #0a0a0a;
   --color-muted:         rgba(0, 0, 0, 0.38);
   --color-border:        rgba(0, 0, 0, 0.1);
-  --color-primary:       #FF5500;
-  --color-primary-light: #FF7733;
-  --color-primary-dark:  #CC4400;
+  --color-primary:       #e86022;
   --color-primary-muted: rgba(255, 85, 0, 0.10);
 
   /* Typography */
@@ -84,6 +82,11 @@ body {
   color: var(--color-fg);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+::selection {
+  background-color: #e86022;
+  color: #000000;
 }
 
 /* ─────────────────────────────────────────
@@ -705,7 +708,7 @@ body {
 
 /* Hero text + info grid — single left-aligned column */
 .about-hero {
-  padding: calc(var(--nav-height) + 5rem) 2.5rem 6rem;
+  padding: var(--nav-height) 2.5rem 6rem;
   /* No max-width — headline must reach full content width */
 }
 
@@ -885,4 +888,242 @@ body {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* ─────────────────────────────────────────
+   LIGHTBOX
+───────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lightbox.is-open {
+  pointer-events: all;
+}
+
+/* Fullscreen image */
+.lightbox__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Close button — top right */
+.lightbox__close {
+  position: absolute;
+  top: 1.75rem;
+  right: 2.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s var(--ease-smooth);
+  z-index: 1;
+}
+
+.lightbox__close:hover {
+  color: #ffffff;
+}
+
+.lightbox__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Prev / Next arrows */
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.2s var(--ease-smooth);
+  z-index: 1;
+}
+
+.lightbox__nav:hover {
+  color: #ffffff;
+}
+
+.lightbox__nav svg {
+  width: 28px;
+  height: 28px;
+}
+
+.lightbox__prev { left: 1.5rem; }
+.lightbox__next { right: 1.5rem; }
+
+/* Counter — bottom center */
+.lightbox__counter {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  white-space: nowrap;
+}
+
+/* Cursor hint on gallery images */
+.onset-gallery figure {
+  cursor: pointer;
+}
+
+/* ─────────────────────────────────────────
+   ON SET PAGE — masonry gallery
+───────────────────────────────────────── */
+.onset-header {
+  padding: calc(var(--nav-height) + 0rem) 1rem 1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.onset-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.onset-count {
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--color-muted);
+}
+
+.onset-gallery {
+  columns: 3;
+  column-gap: 0.75rem;
+  padding: 0 2.5rem 6rem;
+}
+
+.onset-gallery figure {
+  break-inside: avoid;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.onset-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  will-change: transform;
+  transition: transform 0.4s var(--ease-expo-out);
+}
+
+.onset-gallery figure:hover img {
+  transform: scale(1.02);
+}
+
+@media (max-width: 1024px) {
+  .onset-gallery { columns: 2; }
+}
+
+@media (max-width: 640px) {
+  .onset-gallery { columns: 1; }
+}
+
+/* ─────────────────────────────────────────
+   TALENTS PAGE — vertical list + hover asset
+───────────────────────────────────────── */
+.talents-section {
+  padding: var(--nav-height) 2.5rem 6rem;
+}
+
+
+.talents-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.talent__list {
+  list-style: none;
+}
+
+.talent__item {
+  padding: 0.6rem 0;
+  cursor: default;
+}
+
+
+.talent__name {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  display: block;
+  transition: opacity 0.2s var(--ease-smooth);
+}
+
+.talent__item:hover .talent__name {
+  opacity: 0.75;
+}
+
+/* Floating hover container — positioned via GSAP */
+.talent__hover-asset {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 400px;
+  pointer-events: none;
+  z-index: var(--z-modal);
+  overflow: hidden;
+  /* GSAP controls opacity and transform */
+}
+
+.talent__hover-asset img,
+.talent__hover-asset video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .talent__hover-asset { display: none; }
 }
