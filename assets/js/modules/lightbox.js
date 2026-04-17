@@ -25,18 +25,11 @@ export function initLightbox() {
   lb.setAttribute('aria-label', 'Visionneuse');
   lb.innerHTML = `
     <button class="lightbox__close" aria-label="Fermer">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-           stroke-linecap="round" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
+      <i class="bx bx-x" aria-hidden="true"></i>
     </button>
 
     <button class="lightbox__nav lightbox__prev" aria-label="Image précédente">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
+      <i class="bx bx-chevron-left" aria-hidden="true"></i>
     </button>
 
     <div class="lightbox__stage">
@@ -44,10 +37,7 @@ export function initLightbox() {
     </div>
 
     <button class="lightbox__nav lightbox__next" aria-label="Image suivante">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <polyline points="9 18 15 12 9 6"/>
-      </svg>
+      <i class="bx bx-chevron-right" aria-hidden="true"></i>
     </button>
 
     <span class="lightbox__counter" aria-live="polite"></span>

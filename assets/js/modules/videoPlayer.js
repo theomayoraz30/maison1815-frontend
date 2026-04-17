@@ -5,34 +5,12 @@
  * progress scrubbing, mute, time display, and fullscreen toggle.
  */
 
-const PLAY_ICON  = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>`;
-const PAUSE_ICON = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
-
-const UNMUTE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-</svg>`;
-
-const MUTE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-  <line x1="23" y1="9" x2="17" y2="15"/>
-  <line x1="17" y1="9" x2="23" y2="15"/>
-</svg>`;
-
-const FULLSCREEN_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <polyline points="15 3 21 3 21 9"/>
-  <polyline points="9 21 3 21 3 15"/>
-  <line x1="21" y1="3" x2="14" y2="10"/>
-  <line x1="3" y1="21" x2="10" y2="14"/>
-</svg>`;
-
-const EXIT_FULLSCREEN_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-  <polyline points="4 14 10 14 10 20"/>
-  <polyline points="20 10 14 10 14 4"/>
-  <line x1="10" y1="14" x2="3" y2="21"/>
-  <line x1="21" y1="3" x2="14" y2="10"/>
-</svg>`;
+const PLAY_ICON            = `<i class="bx bx-play"            aria-hidden="true"></i>`;
+const PAUSE_ICON           = `<i class="bx bx-pause"           aria-hidden="true"></i>`;
+const UNMUTE_ICON          = `<i class="bx bx-volume-full"     aria-hidden="true"></i>`;
+const MUTE_ICON            = `<i class="bx bx-volume-mute"     aria-hidden="true"></i>`;
+const FULLSCREEN_ICON      = `<i class="bx bx-fullscreen"      aria-hidden="true"></i>`;
+const EXIT_FULLSCREEN_ICON = `<i class="bx bx-exit-fullscreen" aria-hidden="true"></i>`;
 
 export function initVideoPlayer() {
   const video      = document.getElementById('project-video');

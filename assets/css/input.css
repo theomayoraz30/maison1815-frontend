@@ -198,39 +198,24 @@ body {
   outline: none;
 }
 
-.navbar__burger span {
-  display: block;
-  width: 22px;
-  height: 1px;
-  background-color: var(--color-fg);
-  transition: transform 0.35s var(--ease-expo-out),
-              opacity   0.35s var(--ease-expo-out),
-              background-color 0.3s var(--ease-smooth);
-}
-
 /* index.html only: white burger over hero */
-.navbar--over-hero .navbar__burger span {
-  background-color: #ffffff;
+.navbar--over-hero .navbar__burger {
+  color: #ffffff;
 }
 
-.navbar.is-scrolled .navbar__burger span {
-  background-color: var(--color-fg);
+.navbar.is-scrolled .navbar__burger {
+  color: var(--color-fg);
 }
 
-/* Burger → X state — always dark regardless of page/scroll context */
-.navbar__burger.is-open span {
-  background-color: var(--color-fg);
+/* Burger open state — always dark regardless of page/scroll context */
+.navbar__burger.is-open {
+  color: var(--color-fg);
 }
 
-.navbar__burger.is-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.navbar__burger.is-open span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-.navbar__burger.is-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+.navbar__burger i {
+  font-size: 20px;
+  line-height: 1;
+  transition: color 0.3s var(--ease-smooth);
 }
 
 /* Full-screen mobile menu */
@@ -299,9 +284,9 @@ body {
   color: var(--color-primary);
 }
 
-.social-icon svg {
-  width: 15px;
-  height: 15px;
+.social-icon i {
+  font-size: 15px;
+  line-height: 1;
 }
 
 /* ─────────────────────────────────────────
@@ -961,9 +946,9 @@ body {
   color: #ffffff;
 }
 
-.lightbox__close svg {
-  width: 20px;
-  height: 20px;
+.lightbox__close i {
+  font-size: 20px;
+  line-height: 1;
 }
 
 /* Prev / Next arrows */
@@ -988,9 +973,9 @@ body {
   color: #ffffff;
 }
 
-.lightbox__nav svg {
-  width: 28px;
-  height: 28px;
+.lightbox__nav i {
+  font-size: 28px;
+  line-height: 1;
 }
 
 .lightbox__prev { left: 1.5rem; }
@@ -1201,9 +1186,9 @@ body {
   transform: scale(1.1);
 }
 
-.video-center-btn svg {
-  width: 22px;
-  height: 22px;
+.video-center-btn i {
+  font-size: 22px;
+  line-height: 1;
 }
 
 /* ── Controls overlay ── */
@@ -1307,10 +1292,9 @@ body {
   transform: scale(1.12);
 }
 
-.video-btn svg {
-  width: 15px;
-  height: 15px;
-  display: block;
+.video-btn i {
+  font-size: 15px;
+  line-height: 1;
 }
 
 .video-time {
