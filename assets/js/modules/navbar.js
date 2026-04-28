@@ -57,6 +57,8 @@ export function initNavbar() {
       burger.classList.add('is-open');
       burger.setAttribute('aria-expanded', 'true');
       mobile.style.pointerEvents = 'all';
+      const icon = burger.querySelector('i');
+      if (icon) icon.classList.replace('bx-menu', 'bx-x');
 
       gsap.to(mobile, {
         opacity: 1, duration: 0.4, ease: 'power2.out',
@@ -74,6 +76,8 @@ export function initNavbar() {
       isOpen = false;
       burger.classList.remove('is-open');
       burger.setAttribute('aria-expanded', 'false');
+      const icon = burger.querySelector('i');
+      if (icon) icon.classList.replace('bx-x', 'bx-menu');
 
       gsap.to(mobile, {
         opacity: 0, duration: 0.3, ease: 'power2.in',
