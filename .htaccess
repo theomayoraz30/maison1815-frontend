@@ -1,0 +1,25 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Block PHP execution in uploads/
+    RewriteRule ^uploads/.*\.php$ - [F,L]
+
+    # Clean URLs: /works/video/slug -> project-video.php?slug=slug
+    RewriteRule ^works/video/([a-z0-9\-]+)/?$ project-video.php?slug=$1 [L,QSA]
+    RewriteRule ^works/photo/([a-z0-9\-]+)/?$ project-photo.php?slug=$1 [L,QSA]
+
+    # Redirect old .html to .php (preserve bookmarks)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-zA-Z0-9\-]+)\.html$ $1.php [R=301,L]
+</IfModule>
+
+# Prevent PHP execution in uploads
+<FilesMatch "\.(php|php3|php4|php5|phtml)$">
+    <If "%{REQUEST_URI} =~ m|^/uploads/|">
+        Require all denied
+    </If>
+</FilesMatch>

@@ -1,0 +1,48 @@
+Options -Indexes
+Options -ExecCGI
+
+# â”€â”€ Block direct HTTP access to the includes/ subdirectory â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# FilesMatch alone won't catch directory requests; combine with a redirect rule.
+<FilesMatch "^includes/">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+<IfModule mod_authz_core.c>
+    # Apache 2.4+
+    <Directory "includes">
+        Require all denied
+    </Directory>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+    # Apache 2.2 fallback
+    <Directory "includes">
+        Order deny,allow
+        Deny from all
+    </Directory>
+</IfModule>
+
+# â”€â”€ Block access to raw PHP includes via URL rewriting â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Deny direct requests to includes/
+    RewriteRule ^includes/ - [F,L]
+
+    # â”€â”€ Uncomment to force HTTPS in production â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# â”€â”€ Prevent clickjacking / MIME sniffing via headers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# PHP limits
+php_value upload_max_filesize 2G
+php_value post_max_size 2G
+php_value max_execution_time 600
+php_value max_input_time 600
