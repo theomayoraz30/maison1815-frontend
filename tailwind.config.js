@@ -7,8 +7,6 @@ module.exports = {
   theme: {
     // Override defaults — only the design system palette
     colors: {
-      black:       '#000000',
-      white:       '#ffffff',
       transparent: 'transparent',
       current:     'currentColor',
       orange: {
@@ -18,16 +16,19 @@ module.exports = {
         muted:   'rgba(255, 85, 0, 0.15)',
       },
       white: {
-        DEFAULT: '#ffffff',
-        10:  'rgba(255,255,255,0.10)',
-        20:  'rgba(255,255,255,0.20)',
-        40:  'rgba(255,255,255,0.40)',
-        60:  'rgba(255,255,255,0.60)',
+        DEFAULT: '#F9F8F6',
+        10:  'rgba(249,248,246,0.10)',
+        20:  'rgba(249,248,246,0.20)',
+        40:  'rgba(249,248,246,0.40)',
+        60:  'rgba(249,248,246,0.60)',
       },
       black: {
-        DEFAULT: '#000000',
-        80: 'rgba(0,0,0,0.80)',
-        60: 'rgba(0,0,0,0.60)',
+        DEFAULT: '#111110',
+        80: 'rgba(17,17,16,0.80)',
+        60: 'rgba(17,17,16,0.60)',
+      },
+      purple: {
+        DEFAULT: '#9C87E0',
       },
     },
     fontFamily: {

@@ -47,6 +47,15 @@
       </ul>
     </nav>
 
+    <!-- Language switcher (desktop) -->
+    <div class="navbar__lang navbar__lang--desktop" aria-label="Sélection de langue">
+      <button class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+
     <!-- Mobile burger -->
     <button class="navbar__burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navbar-mobile">
       <i class="bx bx-menu" aria-hidden="true"></i>
@@ -70,6 +79,14 @@
         TALENTS
       </a>
     </nav>
+    <!-- Language switcher (mobile) -->
+    <div class="navbar__lang navbar__lang--mobile" aria-label="Sélection de langue">
+      <button class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button class="lang-btn" data-lang="de" aria-pressed="false">DE</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
   </div>
 
 
@@ -120,7 +137,7 @@
     <section class="about-team" aria-label="Équipe">
 
       <div class="about-team__header">
-        <span class="about-team__label">Équipe</span>
+        <span class="about-team__label" data-scramble data-en="Team" data-fr="Équipe">Équipe</span>
       </div>
 
       <ul class="team__list">
