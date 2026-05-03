@@ -7,6 +7,7 @@
 
 import { initScramble    } from './modules/scramble.js';
 import { initNavbar      } from './modules/navbar.js';
+import { initLang        } from './modules/lang.js';
 import { initSlider      } from './modules/slider.js';
 import { initCards       } from './modules/cards.js';
 import { initTalents     } from './modules/talents.js';
@@ -22,6 +23,7 @@ if (typeof ScrollTrigger !== 'undefined') {
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  initLang();
   initScramble();
   initHero();
   initSlider();

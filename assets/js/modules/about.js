@@ -14,6 +14,19 @@ function initTeamHover() {
   const members = document.querySelectorAll('.team__member');
   if (!members.length) return;
 
+  // Inject inline portrait per member for mobile (CSS shows/hides by breakpoint)
+  members.forEach(member => {
+    const src = member.dataset.img;
+    if (!src) return;
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    img.className = 'team__member-img';
+    img.draggable = false;
+    member.appendChild(img);
+  });
+
+  // Desktop hover: floating fixed image
   const hoverImg = document.querySelector('.team__hover-img');
   if (!hoverImg) return;
 
@@ -21,7 +34,6 @@ function initTeamHover() {
     member.addEventListener('mouseenter', () => {
       const src = member.dataset.img;
       if (src && hoverImg.src !== src) hoverImg.src = src;
-      // Instant position — no easing on show, image is already pinned via CSS (right: 0, top: 50%)
       gsap.set(hoverImg, { opacity: 1 });
     });
 

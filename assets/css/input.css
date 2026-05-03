@@ -34,11 +34,11 @@
 ───────────────────────────────────────── */
 :root {
   /* Colors — light theme */
-  --color-bg:            #ffffff;
-  --color-surface:       #f4f4f4;
-  --color-fg:            #0a0a0a;
-  --color-muted:         rgba(0, 0, 0, 0.38);
-  --color-border:        rgba(0, 0, 0, 0.1);
+  --color-bg:            #F9F8F6;
+  --color-surface:       #EFEDE8;
+  --color-fg:            #111110;
+  --color-muted:         #9C8C7E;
+  --color-border:        rgba(17, 17, 16, 0.1);
   --color-primary:       #e86022;
   --color-primary-muted: rgba(255, 85, 0, 0.10);
 
@@ -86,7 +86,7 @@ body {
 
 ::selection {
   background-color: #e86022;
-  color: #000000;
+  color: #111110;
 }
 
 /* ─────────────────────────────────────────
@@ -107,9 +107,9 @@ body {
               border-color 0.35s var(--ease-smooth);
 }
 
-/* Once the user scrolls onto the white-background content, add a crisp white bar */
+/* Once the user scrolls onto the content, add a crisp bar */
 .navbar.is-scrolled {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(249, 248, 246, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -153,7 +153,7 @@ body {
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: var(--tracking-nav);
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-fg);
   text-decoration: none;
   white-space: nowrap;
@@ -262,7 +262,7 @@ body {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: var(--tracking-nav);
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -414,10 +414,10 @@ body {
 }
 
 .hero__scroll-label {
-  font-size: 0.44rem;
-  font-weight: 500;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
   color: rgba(255, 255, 255, 0.28);
 }
 
@@ -449,7 +449,6 @@ body {
   gap: 5rem;
   align-items: center;
   width: min(980px, 88vw);
-  pointer-events: none;
 }
 
 /* Left column — large logo treatment */
@@ -482,7 +481,7 @@ body {
   font-size: 0.5rem;
   font-weight: 500;
   letter-spacing: 0.32em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-primary);
 }
 
@@ -529,7 +528,7 @@ body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -614,7 +613,7 @@ body {
   font-size: 0.42rem;
   font-weight: 500;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -641,7 +640,7 @@ body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -677,15 +676,12 @@ body {
   color: var(--color-muted);
   flex-shrink: 0;
   position: relative;
-  /* Smooth both color and scale */
-  transition: color 0.3s var(--ease-smooth),
-              transform 0.4s var(--ease-expo-out);
+  transition: color 0.3s var(--ease-smooth);
+  z-index: 1;
 }
 
 .ticker__item:hover {
   color: var(--color-primary);
-  /* Pop the item — surrounding items stay in place, this one zooms over them */
-  transform: scale(1.6);
   z-index: 2;
 }
 
@@ -695,6 +691,12 @@ body {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   white-space: nowrap;
+  display: inline-block;
+  transition: transform 0.4s var(--ease-expo-out);
+}
+
+.ticker__item:hover .ticker__name {
+  transform: scale(1.6);
 }
 
 /* ─────────────────────────────────────────
@@ -737,6 +739,7 @@ body {
   padding: 1px 0;
   /* Align top of label with top of value */
   align-self: start;
+  text-transform: lowercase;
 }
 
 .about-info__value {
@@ -791,7 +794,7 @@ body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -811,7 +814,7 @@ body {
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 700;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-fg);
   transition: color 0.2s var(--ease-smooth);
   line-height: 1;
@@ -832,7 +835,7 @@ body {
   font-size: 0.52rem;
   font-weight: 500;
   letter-spacing: 0.15em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -860,6 +863,15 @@ body {
   opacity: 0;
 }
 
+/* Inline portrait shown statically on mobile (injected by about.js) */
+.team__member-img {
+  display: none;
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
   .team__member {
     flex-direction: column;
@@ -869,6 +881,10 @@ body {
 
   .team__hover-img {
     display: none;
+  }
+
+  .team__member-img {
+    display: block;
   }
 }
 
@@ -1014,7 +1030,7 @@ body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -1070,7 +1086,7 @@ body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
 }
 
@@ -1088,7 +1104,7 @@ body {
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.01em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   line-height: 1.05;
   display: block;
   transition: opacity 0.2s var(--ease-smooth);
@@ -1442,7 +1458,7 @@ body {
   font-size: 0.5rem;
   font-weight: 500;
   letter-spacing: 0.2em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
   min-width: 160px;
   flex-shrink: 0;
@@ -1499,7 +1515,7 @@ body {
   font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--color-muted);
   margin-bottom: 2rem;
 }
@@ -1533,4 +1549,88 @@ body {
 
 @media (max-width: 640px) {
   .project-gallery__grid { columns: 1; }
+}
+
+/* ─────────────────────────────────────────
+   LANGUAGE SWITCHER
+───────────────────────────────────────── */
+.navbar__lang {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.lang-sep {
+  font-size: 0.5rem;
+  color: var(--color-border);
+  user-select: none;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-nav);
+  text-transform: lowercase;
+  color: var(--color-muted);
+  cursor: pointer;
+  padding: 4px 5px;
+  line-height: 1;
+  transition: color 0.2s var(--ease-smooth);
+}
+
+.lang-btn:hover {
+  color: var(--color-fg);
+}
+
+.lang-btn[aria-pressed="true"] {
+  color: var(--color-fg);
+}
+
+.navbar--over-hero .lang-btn {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.navbar--over-hero .lang-btn:hover,
+.navbar--over-hero .lang-btn[aria-pressed="true"] {
+  color: #ffffff;
+}
+
+.navbar.is-scrolled .lang-btn {
+  color: var(--color-muted);
+}
+
+.navbar.is-scrolled .lang-btn:hover,
+.navbar.is-scrolled .lang-btn[aria-pressed="true"] {
+  color: var(--color-fg);
+}
+
+/* Mobile: hide desktop switcher, show in mobile menu */
+.navbar__lang--desktop {
+  display: flex;
+}
+
+.navbar__lang--mobile {
+  display: none;
+  margin-top: 2.5rem;
+  gap: 0.5rem;
+}
+
+.navbar__lang--mobile .lang-btn {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+.navbar__lang--mobile .lang-btn[aria-pressed="true"],
+.navbar__lang--mobile .lang-btn:hover {
+  color: var(--color-fg);
+}
+
+@media (max-width: 768px) {
+  .navbar__lang--desktop { display: none; }
+  .navbar__lang--mobile  { display: flex; }
 }
